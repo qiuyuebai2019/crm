@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qust.mapper.CustomerMapper">
+
+    <resultMap id="BaseResultMap" type="com.qust.domain.Customer">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="cus_name" property="cusName" jdbcType="VARCHAR"/>
+        <result column="cus_tel" property="cusTel" jdbcType="VARCHAR"/>
+        <result column="cus_address" property="cusAddress" jdbcType="VARCHAR"/>
+        <result column="cus_visit_time" property="cusVisitTime" jdbcType="TIMESTAMP"/>
+        <result column="cus_employee" property="cusEmployee" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="sel">
+        <if test='keyword != null'>
+            where cus_employee is null
+        </if>
+    </sql>
+
+   <select id="customerList" resultMap="BaseResultMap">
+       select * from customer
+       <include refid="sel"/>
+      limit #{start},#{rows}
+   </select>
+
+   <select id="customerTotal" resultType="java.lang.Integer">
+       select count(1) from customer
+   </select>
+
+    <select id="visitTime" resultMap="BaseResultMap">
+        select cus_name,cus_visit_time from customer where cus_employee = #{cusEmployee};
+    </select>
+
+    <insert id="saveCustomer">
+        insert into customer (cus_name,cus_tel,cus_address,cus_visit_time,cus_employee)
+        value (#{cusName},#{cusTel},#{cusAddress},#{cusVisitTime},#{cusEmployee})
+    </insert>
+
+    <update id="updateCustomer">
+        update customer set cus_name=#{cusName},cus_address=#{cusAddress},cus_visit_time=#{cusVisitTime}
+        where id = #{id}
+    </update>
+
+    <update id="distribution">
+        update customer set cus_employee=#{cusEmployee} where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qust.mapper.PermissionMapper">
+
+    <resultMap id="BaseResultMap" type="com.qust.domain.Permission">
+        <id column="pid" property="pid" jdbcType="BIGINT"/>
+        <result column="pname" property="pname" jdbcType="VARCHAR"/>
+        <result column="presource" property="presource" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getPermissionList" resultMap="BaseResultMap">
+        select
+        pid,pname,presource
+        from permission
+    </select>
+
+    <select id="getPermissionByRid" resultMap="BaseResultMap">
+        select
+        *
+        from permission where pid in (select pid from role_permission_rel where rid=#{id})
+    </select>
+
+
+
+</mapper>

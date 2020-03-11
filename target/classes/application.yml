@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/crm?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 1234
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    encoding: UTF-8
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.qust.pojo

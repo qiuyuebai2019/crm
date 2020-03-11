@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qust.mapper.EmailMapper">
+
+    <resultMap id="BaseResultMap" type="com.qust.domain.Email">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="text" property="text" jdbcType="VARCHAR"/>
+        <result column="s_name" property="sName" jdbcType="VARCHAR"/>
+        <result column="r_id" property="rId" jdbcType="BIGINT"/>
+        <result column="is_read" property="isRead" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--<select id="emailTotalNO" resultMap="BaseResultMap">-->
+        <!--select count(1) from email where ;-->
+    <!--</select>-->
+    <select id="myEamil" resultMap="BaseResultMap">
+        select * from email where r_id = #{rId} and is_read = #{isRead};
+    </select>
+
+    <insert id="sendEamil">
+        insert into email (title,text,s_name,r_id,is_read,create_time) value
+        (#{title},#{text},#{sName},#{rId},#{isRead},#{createTime})
+    </insert>
+
+    <update id="readEmail">
+        update email set is_read = 1 where id = #{id}
+    </update>
+
+</mapper>

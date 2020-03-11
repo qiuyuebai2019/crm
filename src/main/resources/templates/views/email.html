@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="statics/plugins/easyui/uimaker/easyui.css">
+    <link rel="stylesheet" type="text/css" href="statics/plugins/easyui/uimaker/icon.css">
+    <script type="text/javascript" src="statics/plugins/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="statics/plugins/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="statics/plugins/easyui/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="statics/js/email.js"></script>
+</head>
+<body>
+<!--数据表格-->
+<table id="dg"></table>
+
+<div id="tb">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" id="send">发送</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" id="see">查看</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" id="read">查看以读</a>
+</div>
+
+<div id="dialog">
+    <form id="emailForm">
+        <table align="center" style="border-spacing: 0px 10px">
+            <tr id="title">
+                <td>标题:</td>
+                <td><input type="text" name="title" class="easyui-validatebox" ></td>
+            </tr>
+            <tr id="rId">
+                <td>收件人id:</td>
+                <td><input type="text" name="rId" class="easyui-numberbox" ></td>
+            </tr>
+            <tr>
+                <td>内容:</td>
+                <td><textarea type="textarea" name="text" class="easyui-validatebox" rows="10" cols="20"></textarea></td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+<div id="dialog1">
+    <form id="emailForm1">
+        <!--添加一个隐藏域  用于标记以读-->
+        <input type="hidden" name="id">
+        <table align="center" style="border-spacing: 0px 10px">
+            <tr>
+                <td><textarea type="textarea" name="text" class="easyui-validatebox" rows="13" cols="30"></textarea></td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+</body>
+</html>
